@@ -11,7 +11,9 @@
 
 int main() {
 
+	Table table = Table(5, 5);
 
+	table.Run();
 
 
 

@@ -12,15 +12,21 @@
 #include"Chopstick.h"
 
 #include<vector>
+#include<thread>
 
 class Table {
 public:
 	Table(int nrPhilosophers, int nrBowls);
 	virtual ~Table();
 
+	void Run();
+	//Pre:
+	//Post: Starts the meal
+
 private:
 	std::vector<Philosopher*> philosophers;
 	std::vector<Chopstick*> chopsticks;
+	std::vector<std::thread*> threads;
 };
 
 #endif /* TABLE_H_ */

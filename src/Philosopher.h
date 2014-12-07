@@ -14,6 +14,7 @@
 #include<cstdlib>
 #include<chrono>
 #include<thread>
+#include<mutex>
 
 class Philosopher {
 public:
@@ -31,6 +32,7 @@ public:
 private:
 	Chopstick *mChopstickLeft;
 	Chopstick *mChopstickRight;
+	std::mutex mCoutMutex;
 };
 
 #endif /* PHILOSOPHER_H_ */

@@ -22,14 +22,19 @@ void Philosopher::Run(){
 
 	for(unsigned int i=0; i < 10; i++){
 
+
 		//Print that thinking is happening
+		mCoutMutex.lock();
 		std::cout << "Thinking..." << std::endl;
+		mCoutMutex.unlock();
 
 		//Sleep
 		Sleep();
 
 		//Print that eating is happening
+		mCoutMutex.lock();
 		std::cout << "Eating..." << std::endl;
+		mCoutMutex.unlock();
 
 		//Sleep
 		Sleep();

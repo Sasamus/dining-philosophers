@@ -32,3 +32,10 @@ Table::~Table() {
 	// TODO Auto-generated destructor stub
 }
 
+void Table::Run(){
+
+	//Create a thread for every Philosopher in Philosophers Run method
+	for(Philosopher *philosopher : philosophers){
+		threads.push_back(new std::thread(&Philosopher::Run, philosopher));
+	}
+}
