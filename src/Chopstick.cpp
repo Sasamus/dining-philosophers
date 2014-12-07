@@ -1,18 +1,17 @@
 //============================================================================
-// Name        : Table.cpp
+// Name        : Chopstick.cpp
 // Author      : Albin Engström
-// Description : Implementation of class Table
+// Description : Implementation of class Chopstick
 //============================================================================
 
-#include "Table.h"
+#include "Chopstick.h"
 
-Table::Table(int philosophers, int bowls, std::string logFile) {
-
-
+Chopstick::Chopstick() {
+	// TODO Auto-generated constructor stub
 
 }
 
-Table::~Table() {
+Chopstick::~Chopstick() {
 	// TODO Auto-generated destructor stub
 }
 

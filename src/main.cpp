@@ -5,7 +5,7 @@
 // Purpose	   : Start the program
 //============================================================================
 
-#include"Philosopher.h"
+#include"Table.h"
 
 #include <thread>
 

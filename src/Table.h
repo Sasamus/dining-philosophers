@@ -2,18 +2,17 @@
 // Name        : Table.h
 // Author      : Albin Engström
 // Description : Declaration of class Table
-// Purpose	   : Handle the state of the chopsticks
+// Purpose	   : Handle the Chopsticks and the Philosophers
 //============================================================================
 
 #ifndef TABLE_H_
 #define TABLE_H_
 
-/*
- *
- */
+#include"Philosopher.h"
+
 class Table {
 public:
-	Table();
+	Table(int philosophers, int bowls, std::string logFile);
 	virtual ~Table();
 };
 
