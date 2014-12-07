@@ -18,7 +18,7 @@
 
 class Philosopher {
 public:
-	Philosopher(Chopstick *chopstickLeft, Chopstick *chopstickRight);
+	Philosopher(Chopstick *chopstickLeft, Chopstick *chopstickRight, int nrBowls);
 	virtual ~Philosopher();
 
 	void Run();
@@ -33,6 +33,7 @@ private:
 	Chopstick *mChopstickLeft;
 	Chopstick *mChopstickRight;
 	std::mutex mCoutMutex;
+	int mNrBowls;
 };
 
 #endif /* PHILOSOPHER_H_ */

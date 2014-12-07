@@ -6,8 +6,8 @@
 
 #include "Philosopher.h"
 
-Philosopher::Philosopher(Chopstick *chopstickLeft, Chopstick *chopstickRight)
-: mChopstickLeft(chopstickLeft), mChopstickRight(chopstickRight){
+Philosopher::Philosopher(Chopstick *chopstickLeft, Chopstick *chopstickRight, int nrBowls)
+: mChopstickLeft(chopstickLeft), mChopstickRight(chopstickRight), mNrBowls(nrBowls){
 
 	//Seed rand
 	srand(time(NULL));
@@ -20,7 +20,7 @@ Philosopher::~Philosopher() {
 
 void Philosopher::Run(){
 
-	for(unsigned int i=0; i < 10; i++){
+	for(unsigned int i=0; i < mNrBowls; i++){
 
 
 		//Print that thinking is happening
