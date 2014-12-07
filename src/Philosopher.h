@@ -21,6 +21,10 @@ public:
 	void Run();
 	//Pre:
 	//Post: The Philosopher proceeds to eat and think
+
+	void Sleep();
+	//Pre:
+	//Post: The tread sleeps for 1-5 secodns
 };
 
 #endif /* PHILOSOPHER_H_ */

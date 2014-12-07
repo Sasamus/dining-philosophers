@@ -24,29 +24,25 @@ void Philosopher::Run(){
 		//Print that thinking is happening
 		std::cout << "Thinking..." << std::endl;
 
-		//Randomize the number of seconds to think
-		int seconds = rand() % 5 + 1;
-
-		//Create a duration for thread to sleep
-		std::chrono::seconds thinkDuration(seconds);
-
-		//Sleep for said duration
-		std::this_thread::sleep_for(thinkDuration);
+		//Sleep
+		Sleep();
 
 		//Print that eating is happening
 		std::cout << "Eating..." << std::endl;
 
-		//Randomize the number of seconds to eat
-		seconds = rand() % 5 + 1;
-
-		//Create a duration for thread to sleep
-		std::chrono::seconds eatDuration(seconds);
-
-		//Sleep for said duration
-		std::this_thread::sleep_for(thinkDuration);
+		//Sleep
+		Sleep();
 	}
+}
 
+void Philosopher::Sleep(){
 
+	//Randomize the number of seconds to sleep
+	int seconds = rand() % 5 + 1;
 
+	//Create a duration for thread to sleep
+	std::chrono::seconds duration(seconds);
 
+	//Sleep for said duration
+	std::this_thread::sleep_for(duration);
 }
