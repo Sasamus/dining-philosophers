@@ -9,11 +9,18 @@
 #define TABLE_H_
 
 #include"Philosopher.h"
+#include"Chopstick.h"
+
+#include<vector>
 
 class Table {
 public:
-	Table(int philosophers, int bowls, std::string logFile);
+	Table(int nrPhilosophers, int nrBowls);
 	virtual ~Table();
+
+private:
+	std::vector<Philosopher*> philosophers;
+	std::vector<Chopstick*> chopsticks;
 };
 
 #endif /* TABLE_H_ */

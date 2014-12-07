@@ -8,6 +8,8 @@
 #ifndef PHILOSOPHER_H_
 #define PHILOSOPHER_H_
 
+#include"Chopstick.h"
+
 #include<iostream>
 #include<cstdlib>
 #include<chrono>
@@ -15,7 +17,7 @@
 
 class Philosopher {
 public:
-	Philosopher();
+	Philosopher(Chopstick *chopstickLeft, Chopstick *chopstickRight);
 	virtual ~Philosopher();
 
 	void Run();
@@ -24,7 +26,11 @@ public:
 
 	void Sleep();
 	//Pre:
-	//Post: The tread sleeps for 1-5 secodns
+	//Post: The tread sleeps for 1-5 seconds
+
+private:
+	Chopstick *mChopstickLeft;
+	Chopstick *mChopstickRight;
 };
 
 #endif /* PHILOSOPHER_H_ */

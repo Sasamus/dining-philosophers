@@ -6,7 +6,8 @@
 
 #include "Philosopher.h"
 
-Philosopher::Philosopher() {
+Philosopher::Philosopher(Chopstick *chopstickLeft, Chopstick *chopstickRight)
+: mChopstickLeft(chopstickLeft), mChopstickRight(chopstickRight){
 
 	//Seed rand
 	srand(time(NULL));

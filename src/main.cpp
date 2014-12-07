@@ -11,11 +11,9 @@
 
 int main() {
 
-	std::thread *thread = new std::thread(&Philosopher::Run, Philosopher());
 
-	thread->join();
 
-	delete thread;
+
 
 	return 0;
 }
