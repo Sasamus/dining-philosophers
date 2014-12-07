@@ -25,7 +25,7 @@ void Philosopher::Run(){
 
 		//Print that thinking is happening
 		mCoutMutex.lock();
-		std::cout << "Thinking..." << std::endl;
+		std::cout << "Thinking...\n";
 		mCoutMutex.unlock();
 
 		//Sleep
@@ -33,7 +33,7 @@ void Philosopher::Run(){
 
 		//Print that eating is happening
 		mCoutMutex.lock();
-		std::cout << "Eating..." << std::endl;
+		std::cout << "Eating...\n";
 		mCoutMutex.unlock();
 
 		//Sleep
