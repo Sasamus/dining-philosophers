@@ -6,6 +6,7 @@
 //============================================================================
 
 #include"Table.h"
+#include"Philosopher.h"
 
 #include <thread>
 
@@ -14,8 +15,6 @@ int main() {
 	Table table = Table(5, 5);
 
 	table.Run();
-
-
 
 	return 0;
 }

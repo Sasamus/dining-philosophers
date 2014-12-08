@@ -20,8 +20,7 @@ Philosopher::~Philosopher() {
 
 void Philosopher::Run(){
 
-	for(unsigned int i=0; i < mNrBowls; i++){
-
+	for(int i=0; i < mNrBowls; i++){
 
 		//Print that thinking is happening
 		mCoutMutex.lock();

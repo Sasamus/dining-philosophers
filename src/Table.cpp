@@ -10,7 +10,7 @@ Table::Table(int nrPhilosophers, int nrBowls) {
 
 	//Create a Chopstick for every Philosopher
 	for(int i = 0; i < nrPhilosophers; i++){
-		chopsticks.push_back(new Chopstick());
+		mChopsticks.push_back(new Chopstick());
 	}
 
 	//Create Philosophers with their respective Chopsticks
@@ -18,14 +18,16 @@ Table::Table(int nrPhilosophers, int nrBowls) {
 
 		//The left Chopstick of the first Philosopher have to be the last Chopstick, the table is round
 		if(i == 0){
-			philosophers.push_back(new Philosopher(chopsticks.back(), chopsticks[i], nrBowls));
+			mPhilosophers.push_back(new Philosopher(mChopsticks.back(), mChopsticks[i], nrBowls));
+		}else{
+			//The rest of the Philosophers
+			mPhilosophers.push_back(new Philosopher(mChopsticks[i - 1], mChopsticks[i], nrBowls));
 		}
-
-		//The rest of the Philosophers
-		philosophers.push_back(new Philosopher(chopsticks[i - 1], chopsticks[i], nrBowls));
 	}
 
 
+	//phil1 = new Philosopher(new Chopstick(), new Chopstick(), nrBowls);
+	//phil2 = new Philosopher(new Chopstick(), new Chopstick(), nrBowls);
 }
 
 Table::~Table() {
@@ -34,8 +36,16 @@ Table::~Table() {
 
 void Table::Run(){
 
+	//Holds the threads
+	std::vector<std::thread> threads;
+
 	//Create a thread for every Philosopher in Philosophers Run method
-	for(Philosopher *philosopher : philosophers){
-		threads.push_back(new std::thread(&Philosopher::Run, philosopher));
+	for(Philosopher *philosopher : mPhilosophers){
+		threads.push_back(std::thread(&Philosopher::Run, philosopher));
+	}
+
+	//Join all threads
+	for(unsigned int i=0; i < threads.size(); i++){
+		threads.at(i).join();
 	}
 }

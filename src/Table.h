@@ -24,9 +24,8 @@ public:
 	//Post: Starts the meal
 
 private:
-	std::vector<Philosopher*> philosophers;
-	std::vector<Chopstick*> chopsticks;
-	std::vector<std::thread*> threads;
+	std::vector<Philosopher*> mPhilosophers;
+	std::vector<Chopstick*> mChopsticks;
 };
 
 #endif /* TABLE_H_ */
