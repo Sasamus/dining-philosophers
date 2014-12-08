@@ -18,7 +18,7 @@
 
 class Philosopher {
 public:
-	Philosopher(Chopstick *chopstickLeft, Chopstick *chopstickRight, int nrBowls);
+	Philosopher(std::mutex *chopstickLeft, std::mutex *chopstickRight, int nrBowls);
 	virtual ~Philosopher();
 
 	void Run();
@@ -30,8 +30,8 @@ public:
 	//Post: The tread sleeps for 1-5 seconds
 
 private:
-	Chopstick *mChopstickLeft;
-	Chopstick *mChopstickRight;
+	std::mutex *mChopstickLeft;
+	std::mutex *mChopstickRight;
 	std::mutex mCoutMutex;
 	int mNrBowls;
 };

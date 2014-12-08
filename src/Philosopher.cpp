@@ -6,8 +6,8 @@
 
 #include "Philosopher.h"
 
-Philosopher::Philosopher(Chopstick *chopstickLeft, Chopstick *chopstickRight, int nrBowls)
-: mChopstickLeft(chopstickLeft), mChopstickRight(chopstickRight), mNrBowls(nrBowls){
+Philosopher::Philosopher(std::mutex *chopstickLeft, std::mutex *chopstickRight, int nrBowls)
+:mChopstickLeft(chopstickLeft), mChopstickRight(chopstickRight), mNrBowls(nrBowls) {
 
 	//Seed rand
 	srand(time(NULL));
@@ -18,9 +18,9 @@ Philosopher::~Philosopher() {
 	// TODO Auto-generated destructor stub
 }
 
-void Philosopher::Run(){
+void Philosopher::Run() {
 
-	for(int i=0; i < mNrBowls; i++){
+	for (int i = 0; i < mNrBowls; i++) {
 
 		//Print that thinking is happening
 		mCoutMutex.lock();
@@ -40,7 +40,7 @@ void Philosopher::Run(){
 	}
 }
 
-void Philosopher::Sleep(){
+void Philosopher::Sleep() {
 
 	//Randomize the number of seconds to sleep
 	int seconds = rand() % 5 + 1;

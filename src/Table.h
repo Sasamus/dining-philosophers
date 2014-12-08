@@ -13,6 +13,7 @@
 
 #include<vector>
 #include<thread>
+#include<mutex>
 
 class Table {
 public:
@@ -25,7 +26,7 @@ public:
 
 private:
 	std::vector<Philosopher*> mPhilosophers;
-	std::vector<Chopstick*> mChopsticks;
+	std::vector<std::mutex*> mChopsticks;
 };
 
 #endif /* TABLE_H_ */

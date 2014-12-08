@@ -10,7 +10,7 @@ Table::Table(int nrPhilosophers, int nrBowls) {
 
 	//Create a Chopstick for every Philosopher
 	for(int i = 0; i < nrPhilosophers; i++){
-		mChopsticks.push_back(new Chopstick());
+		mChopsticks.push_back(new std::mutex());
 	}
 
 	//Create Philosophers with their respective Chopsticks
@@ -24,10 +24,6 @@ Table::Table(int nrPhilosophers, int nrBowls) {
 			mPhilosophers.push_back(new Philosopher(mChopsticks[i - 1], mChopsticks[i], nrBowls));
 		}
 	}
-
-
-	//phil1 = new Philosopher(new Chopstick(), new Chopstick(), nrBowls);
-	//phil2 = new Philosopher(new Chopstick(), new Chopstick(), nrBowls);
 }
 
 Table::~Table() {
