@@ -18,10 +18,10 @@ Table::Table(int nrPhilosophers, int nrBowls) {
 
 		//The left Chopstick of the first Philosopher have to be the last Chopstick, the table is round
 		if(i == 0){
-			mPhilosophers.push_back(new Philosopher(mChopsticks.back(), mChopsticks[i], nrBowls));
+			mPhilosophers.push_back(new Philosopher(mChopsticks.back(), mChopsticks[i], nrBowls, i));
 		}else{
 			//The rest of the Philosophers
-			mPhilosophers.push_back(new Philosopher(mChopsticks[i - 1], mChopsticks[i], nrBowls));
+			mPhilosophers.push_back(new Philosopher(mChopsticks[i - 1], mChopsticks[i], nrBowls, i));
 		}
 	}
 }

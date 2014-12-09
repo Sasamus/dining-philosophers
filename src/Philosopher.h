@@ -16,7 +16,7 @@
 
 class Philosopher {
 public:
-	Philosopher(std::mutex *chopstickLeft, std::mutex *chopstickRight, int nrBowls);
+	Philosopher(std::mutex *chopstickLeft, std::mutex *chopstickRight, int nrBowls, int placement);
 	virtual ~Philosopher();
 
 	void Run();
@@ -32,6 +32,7 @@ private:
 	std::mutex *mChopstickRight;
 	std::mutex mCoutMutex;
 	int mNrBowls;
+	int mPlacement;
 };
 
 #endif /* PHILOSOPHER_H_ */
