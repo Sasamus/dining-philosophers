@@ -9,6 +9,8 @@
 //Create a mutex
 std::mutex *Philosopher::mCoutMutex = new std::mutex();
 
+int Philosopher::mNrEating = 0;
+
 Philosopher::Philosopher(std::mutex *chopstickLeft, std::mutex *chopstickRight, int nrBowls, int placement)
 :mChopstickLeft(chopstickLeft), mChopstickRight(chopstickRight), mNrBowls(nrBowls), mPlacement(placement) {
 
@@ -17,24 +19,30 @@ Philosopher::Philosopher(std::mutex *chopstickLeft, std::mutex *chopstickRight, 
 
 }
 
+Philosopher::~Philosopher(){
+
+}
+
 void Philosopher::Run() {
 
+	//Print that thinking is happening
+	mCoutMutex->lock();
+	std::cout << "Philosopher " << mPlacement << " is thinking." << std::endl;
+	std::cout << "Philosophers currently eating: " << mNrEating << std::endl;
+	mCoutMutex->unlock();
+
+	//Sleep
+	Sleep();
+
 	for (int i = 0; i < mNrBowls; i++) {
-
-		//Print that thinking is happening
-		mCoutMutex->lock();
-		std::cout << "Philosopher " << mPlacement << " is thinking.\n";
-		mCoutMutex->unlock();
-
-		//Sleep
-		Sleep();
 
 		//Locks the chopsticks
 		lock(*mChopstickLeft, *mChopstickRight);
 
 		//Print that chopsticks have been acquired
 		mCoutMutex->lock();
-		std::cout << "Philosopher " << mPlacement << " have acquired both chopsticks.\n";
+		std::cout << "Philosopher " << mPlacement << " have acquired both chopsticks." << std::endl;
+		std::cout << "Philosophers currently eating: " << mNrEating << std::endl;
 		mCoutMutex->unlock();
 
 		//Create lock guards with the mutexes in their already locked state
@@ -43,7 +51,17 @@ void Philosopher::Run() {
 
 		//Print that eating is happening
 		mCoutMutex->lock();
-		std::cout << "Philosopher " << mPlacement << " is eating.\n";
+		std::cout << "Philosopher " << mPlacement << " is eating." << std::endl;
+		std::cout << "Philosophers currently eating: " << ++mNrEating << std::endl;
+		mCoutMutex->unlock();
+
+		//Sleep
+		Sleep();
+
+		//Print that thinking is happening
+		mCoutMutex->lock();
+		std::cout << "Philosopher " << mPlacement << " is thinking." << std::endl;
+		std::cout << "Philosophers currently eating: " << --mNrEating << std::endl;
 		mCoutMutex->unlock();
 
 		//Sleep

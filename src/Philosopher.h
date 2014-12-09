@@ -35,6 +35,8 @@ private:
 	//A static mutex to sync cout usage across instances of the class
 	static std::mutex *mCoutMutex;
 
+	static int mNrEating;
+
 	//Ints for the nr of bowls to eat and placement at the table
 	int mNrBowls;
 	int mPlacement;
