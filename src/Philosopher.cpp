@@ -30,6 +30,10 @@ void Philosopher::Run() {
 		//Sleep
 		Sleep();
 
+		lock(*mChopstickLeft, *mChopstickRight);
+		std::lock_guard<std::mutex> a(*mChopstickLeft, std::adopt_lock);
+		std::lock_guard<std::mutex> b(*mChopstickRight, std::adopt_lock);
+
 		//Print that eating is happening
 		mCoutMutex.lock();
 		std::cout << "Eating...\n";

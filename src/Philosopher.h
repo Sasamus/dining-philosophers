@@ -8,8 +8,6 @@
 #ifndef PHILOSOPHER_H_
 #define PHILOSOPHER_H_
 
-#include"Chopstick.h"
-
 #include<iostream>
 #include<cstdlib>
 #include<chrono>

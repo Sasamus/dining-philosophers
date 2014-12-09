@@ -9,7 +9,6 @@
 #define TABLE_H_
 
 #include"Philosopher.h"
-#include"Chopstick.h"
 
 #include<vector>
 #include<thread>
