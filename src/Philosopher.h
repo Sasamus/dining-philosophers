@@ -28,9 +28,14 @@ public:
 	//Post: The tread sleeps for 1-5 seconds
 
 private:
+	//Pointers to mutexes for the left and right chopstick
 	std::mutex *mChopstickLeft;
 	std::mutex *mChopstickRight;
-	std::mutex mCoutMutex;
+
+	//A static mutex to sync cout usage across instances of the class
+	static std::mutex *mCoutMutex;
+
+	//Ints for the nr of bowls to eat and placement at the table
 	int mNrBowls;
 	int mPlacement;
 };

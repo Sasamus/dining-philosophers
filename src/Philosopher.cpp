@@ -6,6 +6,9 @@
 
 #include "Philosopher.h"
 
+//Create a mutex
+std::mutex *Philosopher::mCoutMutex = new std::mutex();
+
 Philosopher::Philosopher(std::mutex *chopstickLeft, std::mutex *chopstickRight, int nrBowls, int placement)
 :mChopstickLeft(chopstickLeft), mChopstickRight(chopstickRight), mNrBowls(nrBowls), mPlacement(placement) {
 
@@ -14,18 +17,14 @@ Philosopher::Philosopher(std::mutex *chopstickLeft, std::mutex *chopstickRight, 
 
 }
 
-Philosopher::~Philosopher() {
-	// TODO Auto-generated destructor stub
-}
-
 void Philosopher::Run() {
 
 	for (int i = 0; i < mNrBowls; i++) {
 
 		//Print that thinking is happening
-		mCoutMutex.lock();
+		mCoutMutex->lock();
 		std::cout << "Philosopher " << mPlacement << " is thinking.\n";
-		mCoutMutex.unlock();
+		mCoutMutex->unlock();
 
 		//Sleep
 		Sleep();
@@ -34,18 +33,18 @@ void Philosopher::Run() {
 		lock(*mChopstickLeft, *mChopstickRight);
 
 		//Print that chopsticks have been acquired
-		mCoutMutex.lock();
+		mCoutMutex->lock();
 		std::cout << "Philosopher " << mPlacement << " have acquired both chopsticks.\n";
-		mCoutMutex.unlock();
+		mCoutMutex->unlock();
 
 		//Create lock guards with the mutexes in their already locked state
 		std::lock_guard<std::mutex> lockLeft(*mChopstickLeft, std::adopt_lock);
 		std::lock_guard<std::mutex> lockRight(*mChopstickRight, std::adopt_lock);
 
 		//Print that eating is happening
-		mCoutMutex.lock();
+		mCoutMutex->lock();
 		std::cout << "Philosopher " << mPlacement << " is eating.\n";
-		mCoutMutex.unlock();
+		mCoutMutex->unlock();
 
 		//Sleep
 		Sleep();
