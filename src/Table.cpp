@@ -27,7 +27,15 @@ Table::Table(int nrPhilosophers, int nrBowls, std::string logFileName) {
 }
 
 Table::~Table() {
-	// TODO Auto-generated destructor stub
+	//Delete all Philosophers in mPhilosophers
+	for(Philosopher *philosopher : mPhilosophers){
+		delete philosopher;
+	}
+
+	//Delete all mutexes is mChopsticks
+	for(std::mutex *chopstick : mChopsticks){
+		delete chopstick;
+	}
 }
 
 void Table::Run(){
