@@ -29,6 +29,7 @@ void Philosopher::Run() {
 	mCoutMutex->lock();
 	std::cout << "Philosopher " << mPlacement << " is thinking." << std::endl;
 	std::cout << "Philosophers currently eating: " << mNrEating << std::endl;
+	std::cout << std::endl;
 	mCoutMutex->unlock();
 
 	//Sleep
@@ -43,6 +44,7 @@ void Philosopher::Run() {
 		mCoutMutex->lock();
 		std::cout << "Philosopher " << mPlacement << " have acquired both chopsticks." << std::endl;
 		std::cout << "Philosophers currently eating: " << mNrEating << std::endl;
+		std::cout << std::endl;
 		mCoutMutex->unlock();
 
 		//Create lock guards with the mutexes in their already locked state
@@ -53,6 +55,7 @@ void Philosopher::Run() {
 		mCoutMutex->lock();
 		std::cout << "Philosopher " << mPlacement << " is eating." << std::endl;
 		std::cout << "Philosophers currently eating: " << ++mNrEating << std::endl;
+		std::cout << std::endl;
 		mCoutMutex->unlock();
 
 		//Sleep
@@ -62,6 +65,7 @@ void Philosopher::Run() {
 		mCoutMutex->lock();
 		std::cout << "Philosopher " << mPlacement << " is thinking." << std::endl;
 		std::cout << "Philosophers currently eating: " << --mNrEating << std::endl;
+		std::cout << std::endl;
 		mCoutMutex->unlock();
 
 		//Sleep
