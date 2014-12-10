@@ -11,8 +11,10 @@ std::mutex *Philosopher::mCoutMutex = new std::mutex();
 
 int Philosopher::mNrEating = 0;
 
-Philosopher::Philosopher(std::mutex *chopstickLeft, std::mutex *chopstickRight, int nrBowls, int placement)
-:mChopstickLeft(chopstickLeft), mChopstickRight(chopstickRight), mNrBowls(nrBowls), mPlacement(placement) {
+Philosopher::Philosopher(std::mutex *chopstickLeft, std::mutex *chopstickRight,
+		int nrBowls, int placement, std::string logFileName)
+:mChopstickLeft(chopstickLeft), mChopstickRight(chopstickRight),
+ mNrBowls(nrBowls), mPlacement(placement), mLogFileName(logFileName) {
 
 	//Seed rand
 	srand(time(NULL));

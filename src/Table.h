@@ -13,10 +13,11 @@
 #include<vector>
 #include<thread>
 #include<mutex>
+#include<fstream>
 
 class Table {
 public:
-	Table(int nrPhilosophers, int nrBowls);
+	Table(int nrPhilosophers, int nrBowls, std::string logFileName);
 	virtual ~Table();
 
 	void Run();

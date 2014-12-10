@@ -13,10 +13,12 @@
 #include<chrono>
 #include<thread>
 #include<mutex>
+#include<fstream>
 
 class Philosopher {
 public:
-	Philosopher(std::mutex *chopstickLeft, std::mutex *chopstickRight, int nrBowls, int placement);
+	Philosopher(std::mutex *chopstickLeft, std::mutex *chopstickRight,
+			int nrBowls, int placement, std::string logFileName);
 	virtual ~Philosopher();
 
 	void Run();
@@ -35,11 +37,15 @@ private:
 	//A static mutex to sync cout usage across instances of the class
 	static std::mutex *mCoutMutex;
 
+	//A static int to keep track of how many class instances are eating
 	static int mNrEating;
 
 	//Ints for the nr of bowls to eat and placement at the table
 	int mNrBowls;
 	int mPlacement;
+
+	//Holds the log file's name
+	std::string mLogFileName;
 };
 
 #endif /* PHILOSOPHER_H_ */

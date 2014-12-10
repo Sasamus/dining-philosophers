@@ -6,7 +6,7 @@
 
 #include "Table.h"
 
-Table::Table(int nrPhilosophers, int nrBowls) {
+Table::Table(int nrPhilosophers, int nrBowls, std::string logFileName) {
 
 	//Create a Chopstick for every Philosopher
 	for(int i = 0; i < nrPhilosophers; i++){
@@ -18,10 +18,10 @@ Table::Table(int nrPhilosophers, int nrBowls) {
 
 		//The left Chopstick of the first Philosopher have to be the last Chopstick, the table is round
 		if(i == 0){
-			mPhilosophers.push_back(new Philosopher(mChopsticks.back(), mChopsticks[i], nrBowls, i));
+			mPhilosophers.push_back(new Philosopher(mChopsticks.back(), mChopsticks[i], nrBowls, i, logFileName));
 		}else{
 			//The rest of the Philosophers
-			mPhilosophers.push_back(new Philosopher(mChopsticks[i - 1], mChopsticks[i], nrBowls, i));
+			mPhilosophers.push_back(new Philosopher(mChopsticks[i - 1], mChopsticks[i], nrBowls, i, logFileName));
 		}
 	}
 }
