@@ -27,6 +27,7 @@ Table::Table(int nrPhilosophers, int nrBowls, std::string logFileName) {
 }
 
 Table::~Table() {
+
 	//Delete all Philosophers in mPhilosophers
 	for(Philosopher *philosopher : mPhilosophers){
 		delete philosopher;
