@@ -7,7 +7,7 @@
 #include "Philosopher.h"
 
 //Create a mutex
-std::mutex *Philosopher::mCoutMutex = new std::mutex();
+std::mutex *Philosopher::mOutputMutex = new std::mutex();
 
 int Philosopher::mNrEating = 0;
 
@@ -27,12 +27,30 @@ Philosopher::~Philosopher(){
 
 void Philosopher::Run() {
 
-	//Print that thinking is happening
-	mCoutMutex->lock();
-	std::cout << "Philosopher " << mPlacement << " is thinking." << std::endl;
-	std::cout << "Philosophers currently eating: " << mNrEating << std::endl;
+	//Create and open the log file
+	std::ofstream logFile;
+	logFile.open (mLogFileName);
+
+	//Strings to hold the output
+	std::string outputString1;
+	std::string outputString2;
+
+	//Print and log that thinking is happening
+	mOutputMutex->lock();
+
+	outputString1 = "Philosopher " + std::to_string(mPlacement) + " is thinking.";
+	outputString2 = "Philosophers currently eating: " + std::to_string(mNrEating);
+
+	std::cout << outputString1 << std::endl;
+	logFile << outputString1 << std::endl;
+
+	std::cout << outputString2 << std::endl;
+	logFile << outputString2 << std::endl;
+
 	std::cout << std::endl;
-	mCoutMutex->unlock();
+	logFile << std::endl;
+
+	mOutputMutex->unlock();
 
 	//Sleep
 	Sleep();
@@ -43,36 +61,69 @@ void Philosopher::Run() {
 		lock(*mChopstickLeft, *mChopstickRight);
 
 		//Print that chopsticks have been acquired
-		mCoutMutex->lock();
-		std::cout << "Philosopher " << mPlacement << " have acquired both chopsticks." << std::endl;
-		std::cout << "Philosophers currently eating: " << mNrEating << std::endl;
+		mOutputMutex->lock();
+
+		outputString1 = "Philosopher " + std::to_string(mPlacement) + " have acquired both chopsticks.";
+		outputString2 = "Philosophers currently eating: " + std::to_string(mNrEating);
+
+		std::cout << outputString1 << std::endl;
+		logFile << outputString1 << std::endl;
+
+		std::cout << outputString2 << std::endl;
+		logFile << outputString2 << std::endl;
+
 		std::cout << std::endl;
-		mCoutMutex->unlock();
+		logFile << std::endl;
+
+		mOutputMutex->unlock();
 
 		//Create lock guards with the mutexes in their already locked state
 		std::lock_guard<std::mutex> lockLeft(*mChopstickLeft, std::adopt_lock);
 		std::lock_guard<std::mutex> lockRight(*mChopstickRight, std::adopt_lock);
 
 		//Print that eating is happening
-		mCoutMutex->lock();
-		std::cout << "Philosopher " << mPlacement << " is eating." << std::endl;
-		std::cout << "Philosophers currently eating: " << ++mNrEating << std::endl;
+		mOutputMutex->lock();
+
+		outputString1 = "Philosopher " + std::to_string(mPlacement) + " is eating.";
+		outputString2 = "Philosophers currently eating: " + std::to_string(++mNrEating);
+
+		std::cout << outputString1 << std::endl;
+		logFile << outputString1 << std::endl;
+
+		std::cout << outputString2 << std::endl;
+		logFile << outputString2 << std::endl;
+
 		std::cout << std::endl;
-		mCoutMutex->unlock();
+		logFile << std::endl;
+
+		mOutputMutex->unlock();
 
 		//Sleep
 		Sleep();
 
 		//Print that thinking is happening
-		mCoutMutex->lock();
-		std::cout << "Philosopher " << mPlacement << " is thinking." << std::endl;
-		std::cout << "Philosophers currently eating: " << --mNrEating << std::endl;
+		mOutputMutex->lock();
+
+		outputString1 = "Philosopher " + std::to_string(mPlacement) + " is thinking.";
+		outputString2 = "Philosophers currently eating: " + std::to_string(--mNrEating);
+
+		std::cout << outputString1 << std::endl;
+		logFile << outputString1 << std::endl;
+
+		std::cout << outputString2 << std::endl;
+		logFile << outputString2 << std::endl;
+
 		std::cout << std::endl;
-		mCoutMutex->unlock();
+		logFile << std::endl;
+
+		mOutputMutex->unlock();
 
 		//Sleep
 		Sleep();
 	}
+
+	//Close logFile
+	logFile.close();
 }
 
 void Philosopher::Sleep() {

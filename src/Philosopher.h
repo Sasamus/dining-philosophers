@@ -34,8 +34,8 @@ private:
 	std::mutex *mChopstickLeft;
 	std::mutex *mChopstickRight;
 
-	//A static mutex to sync cout usage across instances of the class
-	static std::mutex *mCoutMutex;
+	//A static mutex to sync output across instances of the class
+	static std::mutex *mOutputMutex;
 
 	//A static int to keep track of how many class instances are eating
 	static int mNrEating;
