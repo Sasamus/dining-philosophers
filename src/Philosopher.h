@@ -18,7 +18,7 @@
 class Philosopher {
 public:
 	Philosopher(std::mutex *chopstickLeft, std::mutex *chopstickRight,
-			int nrBowls, int placement, std::string logFileName);
+			int nrBowls, int placement, std::ofstream *logFile);
 	virtual ~Philosopher();
 
 	void Run();
@@ -45,7 +45,7 @@ private:
 	int mPlacement;
 
 	//Holds the log file's name
-	std::string mLogFileName;
+	std::ofstream *mLogFile;
 };
 
 #endif /* PHILOSOPHER_H_ */

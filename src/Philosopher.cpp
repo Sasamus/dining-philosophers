@@ -12,9 +12,9 @@ std::mutex *Philosopher::mOutputMutex = new std::mutex();
 int Philosopher::mNrEating = 0;
 
 Philosopher::Philosopher(std::mutex *chopstickLeft, std::mutex *chopstickRight,
-		int nrBowls, int placement, std::string logFileName)
+		int nrBowls, int placement, std::ofstream *logFile)
 :mChopstickLeft(chopstickLeft), mChopstickRight(chopstickRight),
- mNrBowls(nrBowls), mPlacement(placement), mLogFileName(logFileName) {
+ mNrBowls(nrBowls), mPlacement(placement), mLogFile(logFile) {
 
 	//Seed rand
 	srand(time(NULL));
@@ -30,10 +30,6 @@ Philosopher::~Philosopher(){
 
 void Philosopher::Run() {
 
-	//Create and open the log file
-	std::ofstream logFile;
-	logFile.open (mLogFileName);
-
 	//Strings to hold the output
 	std::string outputString1;
 	std::string outputString2;
@@ -45,13 +41,13 @@ void Philosopher::Run() {
 	outputString2 = "Philosophers currently eating: " + std::to_string(mNrEating);
 
 	std::cout << outputString1 << std::endl;
-	logFile << outputString1 << std::endl;
+	*mLogFile << outputString1 << std::endl;
 
 	std::cout << outputString2 << std::endl;
-	logFile << outputString2 << std::endl;
+	*mLogFile << outputString2 << std::endl;
 
 	std::cout << std::endl;
-	logFile << std::endl;
+	*mLogFile << std::endl;
 
 	mOutputMutex->unlock();
 
@@ -70,13 +66,13 @@ void Philosopher::Run() {
 		outputString2 = "Philosophers currently eating: " + std::to_string(mNrEating);
 
 		std::cout << outputString1 << std::endl;
-		logFile << outputString1 << std::endl;
+		*mLogFile << outputString1 << std::endl;
 
 		std::cout << outputString2 << std::endl;
-		logFile << outputString2 << std::endl;
+		*mLogFile << outputString2 << std::endl;
 
 		std::cout << std::endl;
-		logFile << std::endl;
+		*mLogFile << std::endl;
 
 		mOutputMutex->unlock();
 
@@ -91,13 +87,13 @@ void Philosopher::Run() {
 		outputString2 = "Philosophers currently eating: " + std::to_string(++mNrEating);
 
 		std::cout << outputString1 << std::endl;
-		logFile << outputString1 << std::endl;
+		*mLogFile << outputString1 << std::endl;
 
 		std::cout << outputString2 << std::endl;
-		logFile << outputString2 << std::endl;
+		*mLogFile << outputString2 << std::endl;
 
 		std::cout << std::endl;
-		logFile << std::endl;
+		*mLogFile << std::endl;
 
 		mOutputMutex->unlock();
 
@@ -111,22 +107,19 @@ void Philosopher::Run() {
 		outputString2 = "Philosophers currently eating: " + std::to_string(--mNrEating);
 
 		std::cout << outputString1 << std::endl;
-		logFile << outputString1 << std::endl;
+		*mLogFile << outputString1 << std::endl;
 
 		std::cout << outputString2 << std::endl;
-		logFile << outputString2 << std::endl;
+		*mLogFile << outputString2 << std::endl;
 
 		std::cout << std::endl;
-		logFile << std::endl;
+		*mLogFile << std::endl;
 
 		mOutputMutex->unlock();
 
 		//Sleep
 		Sleep();
 	}
-
-	//Close logFile
-	logFile.close();
 }
 
 void Philosopher::Sleep() {

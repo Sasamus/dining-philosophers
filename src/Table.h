@@ -27,6 +27,7 @@ public:
 private:
 	std::vector<Philosopher*> mPhilosophers;
 	std::vector<std::mutex*> mChopsticks;
+	std::ofstream *mLogFile;
 };
 
 #endif /* TABLE_H_ */

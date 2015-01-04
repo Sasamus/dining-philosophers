@@ -8,6 +8,10 @@
 
 Table::Table(int nrPhilosophers, int nrBowls, std::string logFileName) {
 
+	//Create and open the log file
+	mLogFile = new std::ofstream();
+	mLogFile->open (logFileName);
+
 	//Create a Chopstick for every Philosopher
 	for(int i = 0; i < nrPhilosophers; i++){
 		mChopsticks.push_back(new std::mutex());
@@ -18,10 +22,10 @@ Table::Table(int nrPhilosophers, int nrBowls, std::string logFileName) {
 
 		//The left Chopstick of the first Philosopher have to be the last Chopstick, the table is round
 		if(i == 0){
-			mPhilosophers.push_back(new Philosopher(mChopsticks.back(), mChopsticks[i], nrBowls, i, logFileName));
+			mPhilosophers.push_back(new Philosopher(mChopsticks.back(), mChopsticks[i], nrBowls, i, mLogFile));
 		}else{
 			//The rest of the Philosophers
-			mPhilosophers.push_back(new Philosopher(mChopsticks[i - 1], mChopsticks[i], nrBowls, i, logFileName));
+			mPhilosophers.push_back(new Philosopher(mChopsticks[i - 1], mChopsticks[i], nrBowls, i, mLogFile));
 		}
 	}
 }
@@ -37,6 +41,9 @@ Table::~Table() {
 	for(std::mutex *chopstick : mChopsticks){
 		delete chopstick;
 	}
+
+	//Close mLogFile
+	mLogFile->close();
 }
 
 void Table::Run(){
