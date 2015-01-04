@@ -100,6 +100,10 @@ void Philosopher::Run() {
 		//Sleep
 		Sleep();
 
+		//Unlocks chopsticks
+		mChopstickLeft->unlock();
+		mChopstickRight->unlock();
+
 		//Print that thinking is happening
 		mOutputMutex->lock();
 
