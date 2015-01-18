@@ -22,8 +22,10 @@ Philosopher::Philosopher(std::mutex *chopstickLeft, std::mutex *chopstickRight,
 }
 
 Philosopher::~Philosopher(){
-	//Delete objects at the member pointers
-	delete mOutputMutex;
+	//Delete object at mOutputMutex if not already done
+	if(mOutputMutex){
+		delete mOutputMutex;
+	}
 }
 
 void Philosopher::Run() {
