@@ -76,10 +76,6 @@ void Philosopher::Run() {
 
 		mOutputMutex->unlock();
 
-		//Create lock guards with the mutexes in their already locked state
-		std::lock_guard<std::mutex> lockLeft(*mChopstickLeft, std::adopt_lock);
-		std::lock_guard<std::mutex> lockRight(*mChopstickRight, std::adopt_lock);
-
 		//Print that eating is happening
 		mOutputMutex->lock();
 
