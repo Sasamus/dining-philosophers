@@ -1,6 +1,6 @@
 //============================================================================
 // Name        : Philosopher.cpp
-// Author      : Albin Engström
+// Author      : Albin Engstr��m
 // Description : Implementation of class Philosopher
 //============================================================================
 
@@ -24,8 +24,6 @@ Philosopher::Philosopher(std::mutex *chopstickLeft, std::mutex *chopstickRight,
 Philosopher::~Philosopher(){
 	//Delete objects at the member pointers
 	delete mOutputMutex;
-	delete mChopstickLeft;
-	delete mChopstickRight;
 }
 
 void Philosopher::Run() {
