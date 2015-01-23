@@ -18,7 +18,7 @@
 class Philosopher {
 public:
 	Philosopher(std::mutex *chopstickLeft, std::mutex *chopstickRight,
-			int nrBowls, int placement, std::ofstream *logFile);
+			int nrBowls, int placement, std::ofstream *logFile, std::mutex *outputMutex);
 	virtual ~Philosopher();
 
 	void Run();
@@ -35,7 +35,7 @@ private:
 	std::mutex *mChopstickRight;
 
 	//A static mutex to sync output across instances of the class
-	static std::mutex *mOutputMutex;
+	std::mutex *mOutputMutex;
 
 	//A static int to keep track of how many class instances are eating
 	static int mNrEating;

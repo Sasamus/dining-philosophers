@@ -6,15 +6,12 @@
 
 #include "Philosopher.h"
 
-//Create a mutex
-std::mutex *Philosopher::mOutputMutex = new std::mutex();
-
 int Philosopher::mNrEating = 0;
 
 Philosopher::Philosopher(std::mutex *chopstickLeft, std::mutex *chopstickRight,
-		int nrBowls, int placement, std::ofstream *logFile)
+		int nrBowls, int placement, std::ofstream *logFile, std::mutex *outputMutex)
 :mChopstickLeft(chopstickLeft), mChopstickRight(chopstickRight),
- mNrBowls(nrBowls), mPlacement(placement), mLogFile(logFile) {
+ mNrBowls(nrBowls), mPlacement(placement), mLogFile(logFile), mOutputMutex(outputMutex) {
 
 	//Seed rand
 	srand(time(NULL));
@@ -22,10 +19,7 @@ Philosopher::Philosopher(std::mutex *chopstickLeft, std::mutex *chopstickRight,
 }
 
 Philosopher::~Philosopher(){
-	//Delete object at mOutputMutex if not already done
-	if(mOutputMutex){
-		delete mOutputMutex;
-	}
+
 }
 
 void Philosopher::Run() {
